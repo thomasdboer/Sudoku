@@ -27,8 +27,8 @@ class Sudoku {
                 if(grid[i][j] == 0) {
                     System.out.println("Now checking row " + i + " column " + j);
                     for (int k = 1; k <= 9; k++)
-                        if(givesConflict(i, j, k)){
-                         System.out.println("Entering " + k + " means conflict!");
+                        if(!givesConflict(i, j, k)){
+                         System.out.println("Entering " + k + " works!");
                     }
                 }
             }
@@ -78,8 +78,6 @@ class Sudoku {
                 return true;
             }
         }
-
-
         //END TODO
         return false;
     }
@@ -91,17 +89,22 @@ class Sudoku {
                 return true;
             }
         }
-
-
         //END TODO
         return false;
     }
 
     boolean boxConflict(int rr, int cc, int d) {
         //TODO is there a conflict when we fill in d at position in the box of rr,cc?
-
-
-
+        //We will use integer division to find out the starting points of boxes
+        int startBoxRow = (rr/BOXSIZE)*BOXSIZE;
+        int startBoxCol = (cc/BOXSIZE)*BOXSIZE;
+        for(int i = startBoxRow; i < startBoxRow + BOXSIZE; i++){
+            for(int j = startBoxCol; j < startBoxCol + BOXSIZE; j++){
+                if(d == grid[i][j]){
+                    return true;
+                }
+            }
+        }
         //END TODO
         return false;
     }
