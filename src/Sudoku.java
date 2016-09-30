@@ -25,9 +25,10 @@ class Sudoku {
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[i].length; j++){
                 if(grid[i][j] == 0) {
+                    System.out.println("Now checking row " + i + " column " + j);
                     for (int k = 1; k <= 9; k++)
                         if(givesConflict(i, j, k)){
-                         System.out.println("Conflict!");
+                         System.out.println("Entering " + k + " means conflict!");
                     }
                 }
             }
@@ -72,7 +73,7 @@ class Sudoku {
 
     boolean rowConflict(int r, int d) {
         //TODO is there a conflict in row r when we fill in d?
-        for(int i = 0; i < grid[r].length;){
+        for(int i = 0; i < grid[r].length; i++){
             if(grid[r][i] == d){
                 return true;
             }
@@ -85,7 +86,11 @@ class Sudoku {
 
     boolean colConflict(int c, int d) {
         //TODO is there a conflict in column c when we fill in d?
-
+        for(int i = 0; i < grid.length; i++){
+            if(grid[i][c] == d){
+                return true;
+            }
+        }
 
 
         //END TODO
