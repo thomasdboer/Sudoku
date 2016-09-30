@@ -21,10 +21,34 @@ class Sudoku {
 
     void run() {
         //TODO starts the solving process.
-
+        for(int i  = 0; i < grid.length; i++){
+            if(i == 0){
+                System.out.println("+-----------------------------+");
+            }
+            else if(i==3 || i==6){
+                System.out.println("-------------------------------");
+            }
+            for(int j = 0; j < grid[i].length; j++){
+                if (j == 0 || j==3 || j==6 || j==9|| j ==12 || j == 15){
+                    System.out.print("|");
+                }
+                if(grid[i][j] == 0){
+                    System.out.print("   ");
+                }
+                else {
+                    System.out.print(" "+grid[i][j] + " ");
+                }
+            }
+            System.out.print("|\n");
+        }
+        System.out.println("+-----------------------------+");
 
 
         //END TODO
+    }
+
+    void printSudoku() {
+        System.out.print(grid);
     }
 
     boolean givesConflict(int r, int  c, int d) {
@@ -101,4 +125,3 @@ class Sudoku {
         new Sudoku().run();
     }
 }
-0
