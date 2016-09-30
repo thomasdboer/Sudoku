@@ -21,6 +21,23 @@ class Sudoku {
 
     void run() {
         //TODO starts the solving process.
+        printSudoku();
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[i].length; j++){
+                if(grid[i][j] == 0) {
+                    for (int k = 1; k <= 9; k++)
+                        if(givesConflict(i, j, k)){
+                         System.out.println("Conflict!");
+                    }
+                }
+            }
+        }
+
+        //END TODO
+    }
+
+    void printSudoku() {
+
         for(int i  = 0; i < grid.length; i++){
             if(i == 0){
                 System.out.println("+-----------------------------+");
@@ -42,27 +59,24 @@ class Sudoku {
             System.out.print("|\n");
         }
         System.out.println("+-----------------------------+");
-
-
-        //END TODO
-    }
-
-    void printSudoku() {
-        System.out.print(grid);
     }
 
     boolean givesConflict(int r, int  c, int d) {
         //TODO is there a conflict when we fill in d at position r,c?
-
-
-
+        if(rowConflict(r,d)||colConflict(c,d)||boxConflict(r,c,d)){
+            return true;
+        }
         //END TODO
         return false;
     }
 
     boolean rowConflict(int r, int d) {
         //TODO is there a conflict in row r when we fill in d?
-
+        for(int i = 0; i < grid[r].length;){
+            if(grid[r][i] == d){
+                return true;
+            }
+        }
 
 
         //END TODO
