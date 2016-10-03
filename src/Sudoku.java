@@ -10,7 +10,7 @@ class Sudoku {
     private static final int BOXSIZE = 3;  // size of the boxes e.g. 3 -> 3x3
     //Comment to the assignment maker: Why isn't SIZE defined as grid.length and DMAX as size?
     int[][] grid = new int[][] {
-            { 0, 6, 0,  0, 0, 1,  0, 9, 4 },
+            { 0, 0, 0,  0, 0, 1,  0, 9, 4 },
             { 3, 0, 0,  0, 0, 7,  1, 0, 0 },
             { 0, 0, 0,  0, 9, 0,  0, 0, 0 },
             { 7, 0, 6,  5, 0, 0,  2, 0, 9 },
@@ -22,11 +22,14 @@ class Sudoku {
     };
 
     int solutionnr = 0; //solution counter
-
+    int[] nextEmpty;
+    int[][] solution = new int[SIZE][SIZE];
+    
     void run() {
         //TODO starts the solving process.
         //Hier moet je de methods in de juiste volgorde en manier gaan callen
-        print();
+        solve();
+        printSltn();
         //END TODO
     }
 
@@ -83,9 +86,6 @@ class Sudoku {
 
     int[] findEmptySquare() {
         //TODO return the next empty square (See assignment).
-        int[] nextEmpty;
-        //Ensure the method runs -------> DELETE BEFORE HANDING IN
-        System.out.println("Checking for next empty square now!");
         //Setup nextEmpty for returning output
         nextEmpty = new int[2];
         //for loop to iterate over grid
@@ -95,15 +95,38 @@ class Sudoku {
                     nextEmpty[0] = i;
                     nextEmpty[1] = j;
                     return nextEmpty;
-                    }
                 }
             }
+        }
         //END TODO
         return null;
      }
 
     void solve() {
         //TODO see (4)
+        
+        
+        
+        if (findEmptySquare() == null) {
+            solutionnr++;
+            for (int i = 0; i<grid.length; i++) {
+                for (int j = 0; j<grid[i].length; j++) {
+                    solution[i][j] = grid[i][j];
+                }
+            }
+        } else {
+            int r = nextEmpty[0];
+            int c = nextEmpty[1];
+            
+            for (int d = 1; d <= 9; d++) {
+                if (!givesConflict(r, c, d)) {
+                    grid[r][c] = d;
+                    solve();
+                    grid[r][c] = 0;
+                }
+            }
+        }
+        
 
 
 
@@ -146,6 +169,16 @@ class Sudoku {
     }
 
     //TODO extra methods
+    
+    void printSltn() {
+        // This method checks whether the program should print the solution or the solutionnr and prints it
+        if (solutionnr == 1) {
+            grid = solution;
+            print();
+        } else {
+            System.out.println(solutionnr);
+        }
+    }
 
 
 
