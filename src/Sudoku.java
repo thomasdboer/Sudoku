@@ -139,11 +139,11 @@ class Sudoku {
             for(int i  = 0; i < grid.length; i++){
                 //Top bar
                 if(i == 0){
-                    System.out.println("+-----------------------------+");
+                    System.out.println("+-----------------+");
                 }
                 //Horizontal dividers
                 else if(i==3 || i==6){
-                    System.out.println("-------------------------------");
+                    System.out.println("-------------------");
                 }
                 //Iterating over grid
                 for(int j = 0; j < grid[i].length; j++){
@@ -151,20 +151,23 @@ class Sudoku {
                     if (j == 0 || j==3 || j==6 || j==9|| j ==12 || j == 15){
                         System.out.print("|");
                     }
+                    else {
+                        System.out.print(" ");
+                    }
                     //Printing zeroes as spaces
                     if(grid[i][j] == 0){
-                        System.out.print("   ");
+                        System.out.print(" ");
                     }
                     //Formatting all other numbers
                     else {
-                        System.out.print(" "+grid[i][j]+" ");
+                        System.out.print(grid[i][j]);
                     }
                 }
                 //Newline because of the last number
                 System.out.print("|\n");
             }
             //Grid bottom
-            System.out.println("+-----------------------------+");
+            System.out.println("+-----------------+");
         //END TODO
     }
 
