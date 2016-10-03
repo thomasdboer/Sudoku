@@ -10,7 +10,7 @@ class Sudoku {
     private static final int BOXSIZE = 3;  // size of the boxes e.g. 3 -> 3x3
     //Comment to the assignment maker: Why isn't SIZE defined as grid.length and DMAX as size?
     int[][] grid = new int[][] {
-            { 0, 0, 0,  0, 0, 1,  0, 9, 4 },
+            { 0, 6, 0,  0, 0, 1,  0, 9, 4 },
             { 3, 0, 0,  0, 0, 7,  1, 0, 0 },
             { 0, 0, 0,  0, 9, 0,  0, 0, 0 },
             { 7, 0, 6,  5, 0, 0,  2, 0, 9 },
